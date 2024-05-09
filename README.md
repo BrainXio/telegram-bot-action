@@ -78,7 +78,7 @@ Feel free to contribute! Please submit an issue or pull request if you have impr
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [The Unlicense](LICENSE).
 
 ## Acknowledgements
 
