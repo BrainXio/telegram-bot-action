@@ -14,7 +14,7 @@ on:
 
 jobs:
   test_telegram:
-    name: Send Informative to Telegram
+    name: Send Info to Telegram
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -28,7 +28,7 @@ jobs:
           message: "🤖"
           parse_mode: 'Markdown'
 
-      - name: Send Informative Message
+      - name: Send Message
         uses: brainxio/telegram-bot-action@v1
         with:
           bot_token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
