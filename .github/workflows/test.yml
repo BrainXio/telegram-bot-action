@@ -1,0 +1,49 @@
+name: Telegram Bot Action Test
+
+on:
+  push:
+    branches:
+      - [*]
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - 'CHANGELOG.md'
+      - 'README.md'
+  workflow_dispatch:
+
+jobs:
+  test_telegram:
+    name: Send Informative to Telegram
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Send Emoji
+        uses: brainxio/telegram-bot-action@main
+        with:
+          bot_token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
+          message: "🤖"
+          parse_mode: 'Markdown'
+
+      - name: Send Informative Message
+        uses: brainxio/telegram-bot-action@main
+        with:
+          bot_token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
+          message: |
+            🔍 **Workflow Details:**
+
+            - **Repository:** \`${{ github.repository }}\`
+            - **Branch:** \`${{ github.ref_name }}\`
+            - **Workflow Name:** \`${{ github.workflow }}\`
+            - **Job Name:** \`${{ github.job }}\`
+            - **Run ID:** \`${{ github.run_id }}\`
+            - **Run Number:** \`${{ github.run_number }}\`
+            - **Run Attempt:** \`${{ github.run_attempt }}\`
+            - **Actor:** \`${{ github.actor }}\`
+
+            ⚡️ *Sending this message via GitHub Actions from your friendly neighborhood bot.*
+          parse_mode: 'Markdown'
