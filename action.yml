@@ -17,9 +17,10 @@ inputs:
     default: 'Markdown'
 runs:
   using: 'composite'
-  shell: bash
   steps:
-    - run: |
+    - name: Send Info to Telegram
+      shell: bash
+      run: |
         bot_token=$INPUT_BOT_TOKEN
         chat_id=$INPUT_CHAT_ID
         message=$INPUT_MESSAGE
@@ -33,8 +34,8 @@ runs:
             "parse_mode": "${parse_mode}",
             "text": "${message}"
         }
-        EOF
-        )
+EOF
+    )
 
         response=$(curl -s -X POST -H "Content-Type: application/json" -d "${payload}" "${url}")
         if [ $? -eq 0 ]; then
