@@ -17,6 +17,11 @@ inputs:
     default: 'Markdown'
 runs:
   using: 'composite'
+  env:
+    INPUT_BOT_TOKEN: ${{ inputs.bot_token }}
+    INPUT_CHAT_ID: ${{ inputs.chat_id }}
+    INPUT_MESSAGE: ${{ inputs.message }}
+    INPUT_PARSE_MODE: ${{ inputs.parse_mode }}
   steps:
     - name: Send Info to Telegram
       shell: bash
