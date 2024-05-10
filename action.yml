@@ -35,7 +35,7 @@ runs:
             "text": "${message}"
         }
 EOF
-    )
+        )
 
         response=$(curl -s -X POST -H "Content-Type: application/json" -d "${payload}" "${url}")
         if [ $? -eq 0 ]; then
