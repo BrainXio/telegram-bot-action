@@ -17,6 +17,7 @@ inputs:
     default: 'Markdown'
 runs:
   using: 'composite'
+  shell: bash
   steps:
     - run: |
         bot_token=$INPUT_BOT_TOKEN
