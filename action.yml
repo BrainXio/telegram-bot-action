@@ -34,8 +34,7 @@ runs:
             "parse_mode": "${parse_mode}",
             "text": "${message}"
         }
-EOF
-        )
+        EOF)
 
         response=$(curl -s -X POST -H "Content-Type: application/json" -d "${payload}" "${url}")
         if [ $? -eq 0 ]; then
