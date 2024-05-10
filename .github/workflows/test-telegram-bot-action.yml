@@ -20,21 +20,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Send Emoji
-        uses: brainxio/telegram-bot-action@v1
-        with:
-          bot_token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
-          message: "🤖"
-          parse_mode: 'Markdown'
-
       - name: Send Message
-        uses: brainxio/telegram-bot-action@v1
+        uses: './'
         with:
           bot_token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
           message: |
-            🔍 **Workflow Details:**
+            🤖 **Workflow Details:**
 
             - **Repository:** \`${{ github.repository }}\`
             - **Branch:** \`${{ github.ref_name }}\`

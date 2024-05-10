@@ -16,5 +16,13 @@ inputs:
     required: false
     default: 'Markdown'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
+  steps:
+    - name: Send Info to Telegram
+      shell: bash
+      env:
+        INPUT_BOT_TOKEN: ${{ inputs.bot_token }}
+        INPUT_CHAT_ID: ${{ inputs.chat_id }}
+        INPUT_MESSAGE: ${{ inputs.message }}
+        INPUT_PARSE_MODE: ${{ inputs.parse_mode }}
+      run: ./telegram.sh
