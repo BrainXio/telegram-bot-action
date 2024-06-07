@@ -9,7 +9,7 @@ inputs:
     description: 'Telegram Chat ID'
     required: true
   message:
-    description: 'Message to send'
+    description: 'Message to send or path to a document containing the message'
     required: true
   parse_mode:
     description: 'Message format (Markdown or HTML)'
@@ -35,11 +35,19 @@ runs:
 
         url="https://api.telegram.org/bot${bot_token}/sendMessage"
 
+        if [ -f "$message" ]; then
+          # If the message is a file, read the content of the file
+          message_content=$(<"$message")
+        else
+          # If the message is not a file, use it as is
+          message_content="$message"
+        fi
+
         payload=$(cat <<EOF
         {
             "chat_id": "${chat_id}",
             "parse_mode": "${parse_mode}",
-            "text": "${message}"
+            "text": "${message_content}"
         }
         EOF
         )
